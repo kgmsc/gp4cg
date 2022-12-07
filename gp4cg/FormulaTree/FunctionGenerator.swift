@@ -9,7 +9,7 @@ import Foundation
 
 struct FunctionGenerator {
     private static let variables = (0...1).map { "X" + String($0) }
-    private static let numbers = Array(1...5)
+    private static let numbers = Array(1...3)
     private static let numChoices: [Parameter] = numbers + variables
     
     static func randomParameters(for count: Int) -> [Parameter] {

@@ -235,11 +235,11 @@ let teacherData =  [[0, 0, 1], [1, 0, 0], [2, 0, 2], [2, 1, 3], [3, 0, 5], [3, 1
                                                                                       14, 70], [70, 1, 70], [70, 2, 69], [70, 3, 68], [70, 4, 67], [70, 5,
                                                                                        66], [70, 6, 65], [70, 7, 64]]
 
-let config = SymbolicRegressorConfiguration(populationSize: 10000, generations: 20, depthRange: 3..<10)
+let config = SymbolicRegressorConfiguration(populationSize: 10000, generations: 20, depthRange: 3..<6)
 //let regressor = SymbolicRegressor(configuration: config, resumptionPath: "\(NSHomeDirectory())/Desktop/gp4cg/log_2022_12_4_22_11_5/20.log")
 let regressor = SymbolicRegressor(configuration: config)
 
-let mae = MeanPowError2d(teacherData: teacherData, power: 2.0)
+let mae = MeanAbsoluteError2d(teacherData: teacherData)
 let acc = Accuracy(teacherData: teacherData)
 
 let candidateManager = CandidateManager(uniquenessIndicator: { $0.evaluation(acc) == $1.evaluation(acc) })
