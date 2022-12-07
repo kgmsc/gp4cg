@@ -257,7 +257,7 @@ regressor.operations = [
     ]),
     TournamentSelection(sortFunction: { $0.evaluation(acc) == $1.evaluation(acc) ? $0.evaluation(mae) < $1.evaluation(mae) : $0.evaluation(acc) > $1.evaluation(acc) }, tournamentSize: 2),
     Pick(candidateManager: candidateManager, filterFunction: {
-        $0.evaluation(acc) > 0.17
+        $0.evaluation(acc) > 0.3
     }),
     SaveProgress(saveDirectory: saveDir),
     PrintBest(sortFunction: { $0.evaluation(acc) == $1.evaluation(acc) ? $0.evaluation(mae) < $1.evaluation(mae) : $0.evaluation(acc) > $1.evaluation(acc) }),
