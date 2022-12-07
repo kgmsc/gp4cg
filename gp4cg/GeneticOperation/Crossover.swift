@@ -7,6 +7,12 @@
 
 import Foundation
 
-struct Crossover: GeneticOperation {
-    
-}
+//struct Crossover: GeneticOperation {
+//    func exec(_ population: [Individual], generation: Int) -> [Individual] {
+//        
+//    }
+//
+//    var description: String
+//
+//
+//}
