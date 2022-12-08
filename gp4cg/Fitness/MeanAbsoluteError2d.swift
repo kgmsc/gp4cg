@@ -12,7 +12,7 @@ struct MeanAbsoluteError2d: Fitness {
     
     func exec(_ individual: Individual) -> Float {
         let total = teacherData.reduce(Float.zero) {
-            $0 + Float(Swift.abs($1[2] - individual.calculate([
+            $0 + Float(Swift.abs($1[2] - individual.node.calculate([
                 "X0": $1[0],
                 "X1": $1[1]
             ])))

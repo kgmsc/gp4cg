@@ -6,24 +6,22 @@
 //
 
 import Foundation
+import Algorithms
 
 struct FunctionGenerator {
-    private static let variables = (0...1).map { "X" + String($0) }
-    private static let numbers = Array(1...3)
-    private static let numChoices: [Parameter] = numbers + variables
+    private static let params: [ParameterViriety: [Parameter]] = [
+        .Node: Operator.operators.values.map { Node(op: $0) },
+        .Number: Array(1...3),
+        .Variable: (0...1).map { "X" + String($0) }
+    ]
     
-    static func randomParameters(for count: Int) -> [Parameter] {
-        Array((numChoices + embededNodes as [Parameter]).shuffled().prefix(count))
+    static func random(for count: Int, variety: [ParameterViriety]) -> [Parameter] {
+        variety.flatMap{ params[$0]! }.randomSample(count: count)
     }
-    static func randomConstants(for count: Int) -> [Parameter] {
-        Array((numChoices as [Parameter]).shuffled().prefix(count))
-    }
-
-    private static let embededNodes = Operator.operators.values.map { Node(op: $0) }
     
-    static func generateIndividuals(for count: Int, depthRange: Range<Int>) -> [Individual] {
-        (0..<count).map { _ in
-            Individual(maxDepth: Int.random(in: depthRange))
-        }
+    enum ParameterViriety: String {
+        case Variable
+        case Number
+        case Node
     }
 }

@@ -32,7 +32,7 @@ class SymbolicRegressor {
     func fit() {
         for gen in 1...configuration.generations {
             print("########## Generation \(gen)/\(configuration.generations)")
-            population += FunctionGenerator.generateIndividuals(for: configuration.populationSize - population.count, depthRange: configuration.depthRange)
+            population += Individual.generate(for: configuration.populationSize - population.count, depthRange: configuration.depthRange)
             for operation in operations {
                 print(operation)
                 let begin = Date()

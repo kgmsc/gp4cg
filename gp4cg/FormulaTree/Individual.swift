@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Individual: Codable  {
+class Individual: Codable {
     let maxDepth: Int
     private(set) var node: Node
     private(set) var fitness: [String: Float] = [:]
@@ -16,10 +16,10 @@ class Individual: Codable  {
     init(maxDepth: Int) {
         self.maxDepth = maxDepth
         node = Node(op: Operator.random(), maxDepth: maxDepth)
-        _ = node.setRandomParams(isPriority: true)
+        node.setRandomParams(isPriority: true)
     }
     
-    private init(maxDepth: Int, node: Node, fitness: [String: Float]) {
+    init(maxDepth: Int, node: Node, fitness: [String: Float] = [:]) {
         self.maxDepth = maxDepth
         self.node = node
         self.fitness = fitness
@@ -35,7 +35,7 @@ class Individual: Codable  {
     func evaluation(_ teacherData: [[Int]]) -> [Bool] {
         if judgeResult == nil {
             judgeResult = teacherData.map {
-                calculate([
+                node.calculate([
                     "X0": $0[0],
                     "X1": $0[1]
                 ]) == $0[2]
@@ -48,20 +48,16 @@ class Individual: Codable  {
         Individual(maxDepth: maxDepth, node: node, fitness: fitness)
     }
     
-    func mutated() -> Individual {
-        let new = Individual(maxDepth: maxDepth, node: node, fitness: [:])
-        _ = new.node.mutateBranch(position: Int.random(in: 1...new.node.nodeCount - 1))
-        return new
-    }
-    
-    func calculate(_ localParameters: [String: Int]) -> Int {
-        return node.calculate(localParameters)
+    static func generate(for count: Int, depthRange: Range<Int>) -> [Individual] {
+        (0..<count).map { _ in
+            Individual(maxDepth: Int.random(in: depthRange))
+        }
     }
 }
 
 extension Individual: CustomStringConvertible {
     var description: String {
-        String(describing: node)
+        String(describing: "\(node) \(fitness)")
     }
 }
 

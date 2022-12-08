@@ -12,7 +12,7 @@ struct Accuracy: Fitness {
     
     func exec(_ individual: Individual) -> Float {
         Float(teacherData.filter {
-            $0[2] == individual.calculate([
+            $0[2] == individual.node.calculate([
                 "X0": $0[0],
                 "X1": $0[1]
             ])

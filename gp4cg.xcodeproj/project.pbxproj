@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA024CDA2940814100A38B27 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = BA024CD92940814100A38B27 /* Algorithms */; };
+		BA024CDC2940FF4B00A38B27 /* Node+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA024CDB2940FF4B00A38B27 /* Node+Collection.swift */; };
+		BA024CDE2940FF7900A38B27 /* Node+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA024CDD2940FF7900A38B27 /* Node+Codable.swift */; };
 		BA232B6E2938841E00A5B910 /* SymbolicRegressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA232B6D2938841E00A5B910 /* SymbolicRegressor.swift */; };
 		BA23603E293C731100E9FCD1 /* Nothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23603D293C731100E9FCD1 /* Nothing.swift */; };
 		BA236040293C732200E9FCD1 /* Fork.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23603F293C732200E9FCD1 /* Fork.swift */; };
@@ -23,7 +26,6 @@
 		BA23605A293C91C900E9FCD1 /* CandidateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA236059293C91C900E9FCD1 /* CandidateManager.swift */; };
 		BA261AFF293A369C00E49F72 /* SymbolicRegressorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA261AFE293A369C00E49F72 /* SymbolicRegressorConfiguration.swift */; };
 		BA261B01293A3B9300E49F72 /* GeneticOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA261B00293A3B9300E49F72 /* GeneticOperation.swift */; };
-		BA7E82A92937195800C186D6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7E82A82937195800C186D6 /* Extension.swift */; };
 		BAC2EB5E293CEB5100A2C72D /* Crossover.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC2EB5D293CEB5100A2C72D /* Crossover.swift */; };
 		BAF27486293B03000056C705 /* FunctionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF27485293B03000056C705 /* FunctionGenerator.swift */; };
 		D02047EF291BECE800AEB158 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02047EE291BECE800AEB158 /* main.swift */; };
@@ -46,6 +48,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BA024CDB2940FF4B00A38B27 /* Node+Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Node+Collection.swift"; sourceTree = "<group>"; };
+		BA024CDD2940FF7900A38B27 /* Node+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Node+Codable.swift"; sourceTree = "<group>"; };
 		BA232B6D2938841E00A5B910 /* SymbolicRegressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicRegressor.swift; sourceTree = "<group>"; };
 		BA23603D293C731100E9FCD1 /* Nothing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nothing.swift; sourceTree = "<group>"; };
 		BA23603F293C732200E9FCD1 /* Fork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fork.swift; sourceTree = "<group>"; };
@@ -62,7 +66,6 @@
 		BA236059293C91C900E9FCD1 /* CandidateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateManager.swift; sourceTree = "<group>"; };
 		BA261AFE293A369C00E49F72 /* SymbolicRegressorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicRegressorConfiguration.swift; sourceTree = "<group>"; };
 		BA261B00293A3B9300E49F72 /* GeneticOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneticOperation.swift; sourceTree = "<group>"; };
-		BA7E82A82937195800C186D6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		BAC2EB5D293CEB5100A2C72D /* Crossover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crossover.swift; sourceTree = "<group>"; };
 		BAF27485293B03000056C705 /* FunctionGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionGenerator.swift; sourceTree = "<group>"; };
 		D02047EB291BECE800AEB158 /* gp4cg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = gp4cg; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA024CDA2940814100A38B27 /* Algorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +121,8 @@
 			children = (
 				D0BCBFC7291C090500755BD1 /* Individual.swift */,
 				D0BCBFC5291C070300755BD1 /* Node.swift */,
+				BA024CDB2940FF4B00A38B27 /* Node+Collection.swift */,
+				BA024CDD2940FF7900A38B27 /* Node+Codable.swift */,
 				D0BCBFC9291D24F600755BD1 /* Parameter.swift */,
 				BAF27485293B03000056C705 /* FunctionGenerator.swift */,
 				BA236057293C787200E9FCD1 /* Operator.swift */,
@@ -147,7 +153,6 @@
 				BA23604F293C73DD00E9FCD1 /* Fitness */,
 				BA23603C293C72FC00E9FCD1 /* GeneticOperation */,
 				D02047EE291BECE800AEB158 /* main.swift */,
-				BA7E82A82937195800C186D6 /* Extension.swift */,
 				BA232B6D2938841E00A5B910 /* SymbolicRegressor.swift */,
 				BA261AFE293A369C00E49F72 /* SymbolicRegressorConfiguration.swift */,
 				BA236059293C91C900E9FCD1 /* CandidateManager.swift */,
@@ -172,6 +177,7 @@
 			);
 			name = gp4cg;
 			packageProductDependencies = (
+				BA024CD92940814100A38B27 /* Algorithms */,
 			);
 			productName = "genetic-programming";
 			productReference = D02047EB291BECE800AEB158 /* gp4cg */;
@@ -202,6 +208,7 @@
 			);
 			mainGroup = D02047E2291BECE800AEB158;
 			packageReferences = (
+				BA024CD82940814100A38B27 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
 			productRefGroup = D02047EC291BECE800AEB158 /* Products */;
 			projectDirPath = "";
@@ -221,6 +228,7 @@
 				BA236051293C73F200E9FCD1 /* MeanAbsoluteError2d.swift in Sources */,
 				D0BCBFC8291C090500755BD1 /* Individual.swift in Sources */,
 				BA236048293C735600E9FCD1 /* SaveProgress.swift in Sources */,
+				BA024CDE2940FF7900A38B27 /* Node+Codable.swift in Sources */,
 				D0BCBFCA291D24F600755BD1 /* Parameter.swift in Sources */,
 				BA236042293C733000E9FCD1 /* TournamentSelection.swift in Sources */,
 				BA236044293C733C00E9FCD1 /* PrintBest.swift in Sources */,
@@ -238,7 +246,7 @@
 				BA236055293C741400E9FCD1 /* Accuracy.swift in Sources */,
 				D0BCBFC4291C06C100755BD1 /* Fitness.swift in Sources */,
 				D0BCBFC6291C070300755BD1 /* Node.swift in Sources */,
-				BA7E82A92937195800C186D6 /* Extension.swift in Sources */,
+				BA024CDC2940FF4B00A38B27 /* Node+Collection.swift in Sources */,
 				BA236040293C732200E9FCD1 /* Fork.swift in Sources */,
 				BA23604A293C736400E9FCD1 /* CustomOperation.swift in Sources */,
 			);
@@ -404,6 +412,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BA024CD82940814100A38B27 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BA024CD92940814100A38B27 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA024CD82940814100A38B27 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D02047E3291BECE800AEB158 /* Project object */;
 }

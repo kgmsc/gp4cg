@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Algorithms
 
 struct TournamentSelection: Selection {
     let sortFunction: (Individual, Individual) -> Bool
@@ -14,11 +15,11 @@ struct TournamentSelection: Selection {
     
     func exec(_ population: [Individual], generation: Int) -> [Individual] {
         let shuffledPopulation = population.shuffled()
-        let tournament = shuffledPopulation.chunked(by: tournamentSize)
+        let tournament = Array(shuffledPopulation.chunks(ofCount: tournamentSize))
         print("\t\t\(tournament.count) tournaments")
         print("\t\t", terminator: "")
         
-        let processes = tournament.chunked(by: 90)
+        let processes = tournament.chunks(ofCount: 90)
         let dispatchGroup = DispatchGroup()
         var selected: [Individual] = []
         for process in processes {

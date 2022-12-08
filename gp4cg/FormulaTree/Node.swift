@@ -8,22 +8,41 @@
 import Foundation
 
 struct Node {
+    typealias Element = Parameter
+    typealias Index = Int
+    
     var op: Operator
-    var params: [Parameter] = []
+    var params: [any Element] = []
     var depth: Int = 0
     var maxDepth: Int = 1
-    var nodeCount: Int = 1 // このノード以下のノードの数
+    var nodeCount: Int = 1 // このノード以下のノードの数（1+1なら3，1+(1+1)なら5）
     
-    mutating func setRandomParams(isPriority: Bool = false) -> Int {
-        if depth > maxDepth {
-            fatalError()
-        } else if depth == maxDepth {
-            params = FunctionGenerator.randomConstants(for: op.arity)
+    var staticValue: Int? = nil
+    
+    init(op: Operator, maxDepth: Int = 1) {
+        self.op = op
+        self.maxDepth = maxDepth
+    }
+    
+    init(depth: Int, maxDepth: Int) {
+        self.depth = depth
+        self.maxDepth = maxDepth
+        op = Operator.random()
+        params = []
+        setRandomParams(isPriority: true)
+    }
+    
+    mutating func setRandomParams(isPriority: Bool = false) {
+        precondition(depth <= maxDepth)
+        if depth == maxDepth {
+            params = FunctionGenerator.random(for: op.arity, variety: [.Number, .Variable])
         } else if isPriority {
-            params = FunctionGenerator.randomParameters(for: op.arity)
-            params[0] = Node(op: Operator.random())
+            params = [
+                FunctionGenerator.random(for: 1, variety: [.Node]),
+                FunctionGenerator.random(for: op.arity - 1, variety: [.Node, .Number, .Variable])
+            ].flatMap { $0 }
         } else {
-            params = FunctionGenerator.randomParameters(for: op.arity)
+            params = FunctionGenerator.random(for: op.arity, variety: [.Node, .Number, .Variable])
         }
         self.nodeCount = 1; //自分自身を含むので1
         for (i, param) in params.enumerated() {
@@ -31,52 +50,16 @@ struct Node {
                 param.depth = depth + 1
                 param.maxDepth = maxDepth
                 // Max Depthまでの長さがほしいので,親がpriorityなら，子の最初のブランチは必ずpriorityにする
-                nodeCount += param.setRandomParams(isPriority: isPriority ? i == 0 : false)
+                param.setRandomParams(isPriority: isPriority ? i == 0 : false)
                 params[i] = param
-            }else{
-                nodeCount += 1
             }
+            nodeCount += params[i].nodeCount
         }
-        return nodeCount
-    }
-    
-    private mutating func randomMutate() {
-        self.op = Operator.random()
-        self.params = []
-        _ = self.setRandomParams(isPriority: true)
-    }
-    
-    mutating func mutateBranch(position: Int) -> Int {
-        var position = position
-        if position == nodeCount {
-            // 自分以下を変更
-            self.randomMutate()
-        } else {
-            for (i, param) in params.enumerated() {
-                if var param = param as? Node {
-                    if position <= param.nodeCount {
-                        let oldWeight = param.nodeCount
-                        let newWeight = param.mutateBranch(position: position)
-                        params[i] = param
-                        nodeCount = nodeCount - oldWeight + newWeight
-                        return nodeCount
-                    } else {
-                        position -= param.nodeCount
-                        continue
-                    }
-                } else {
-                    if position == 1 {
-                        // 数字を変更
-                        params[i] = FunctionGenerator.randomConstants(for: 1).first!
-                        return self.nodeCount
-                    } else {
-                        position -= 1
-                        continue
-                    }
-                }
-            }
+        
+        let staticValues = params.compactMap { $0.staticValue }
+        if staticValues.count == op.arity {
+            staticValue = op.function(staticValues)
         }
-        return nodeCount
     }
     
 }
@@ -99,80 +82,13 @@ extension Node: CustomStringConvertible {
     }
 }
 
-extension Node: Codable {
-    enum CodingKeys: String, CodingKey {
-        case op
-        case params
-        case depth
-        case maxDepth
-        case nodeCount
-    }
-    
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        op = Operator.operators[try values.decode(String.self, forKey: .op)]!
-        params = (try values.decode([ParameterWrapper].self, forKey: .params)).map { $0.parameter }
-        depth = try values.decode(Int.self, forKey: .depth)
-        maxDepth = try values.decode(Int.self, forKey: .maxDepth)
-        nodeCount = try values.decode(Int.self, forKey: .nodeCount)
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(op.name, forKey: .op)
-        try container.encode(params.map { ParameterWrapper($0) }, forKey: .params)
-        try container.encode(depth, forKey: .depth)
-        try container.encode(maxDepth, forKey: .maxDepth)
-        try container.encode(nodeCount, forKey: .nodeCount)
-    }
-}
-
-fileprivate struct ParameterWrapper: Codable {
-    let parameter: Parameter
-    
-    private enum CodingKeys: String, CodingKey {
-        case base, payload
-    }
-    
-    private enum Base: Int, Codable {
-        case int
-        case string
-        case node
-    }
-    
-    init(_ parameter: Parameter) {
-        self.parameter = parameter
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let base = try container.decode(Base.self, forKey: .base)
-        
-        switch base {
-        case .int:
-            self.parameter = try container.decode(Int.self, forKey: .payload)
-        case .string:
-            self.parameter = try container.decode(String.self, forKey: .payload)
-        case .node:
-            self.parameter = try container.decode(Node.self, forKey: .payload)
-        }
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        switch parameter {
-        case let payload as Int:
-            try container.encode(Base.int, forKey: .base)
-            try container.encode(payload, forKey: .payload)
-        case let payload as String:
-            try container.encode(Base.string, forKey: .base)
-            try container.encode(payload, forKey: .payload)
-        case let payload as Node:
-            try container.encode(Base.node, forKey: .base)
-            try container.encode(payload, forKey: .payload)
-        default:
-            break
-        }
-    }
-}
+//extension Node: Hashable {
+//    static func == (lhs: Node, rhs: Node) -> Bool {
+//        lhs.op == rhs.op && lhs.params == rhs.params
+//    }
+//
+//    func hash(into hasher: inout Hasher) {
+//        hasher.combine(op)
+//        hasher.combine(params)
+//    }
+//}

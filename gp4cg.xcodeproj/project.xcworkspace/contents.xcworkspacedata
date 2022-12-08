@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/yuji/github/generative-combi-program/swift/gp4cg.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

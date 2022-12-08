@@ -50,3 +50,13 @@ struct Operator {
     }
     
 }
+
+extension Operator: Hashable {
+    static func == (lhs: Operator, rhs: Operator) -> Bool {
+        lhs.name == rhs.name
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+    }
+}

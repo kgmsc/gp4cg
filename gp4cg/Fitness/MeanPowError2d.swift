@@ -13,7 +13,7 @@ struct MeanPowError2d: Fitness {
     
     func exec(_ individual: Individual) -> Float {
         let total = teacherData.reduce(Float.zero) {
-            $0 + pow(Float($1[2] - individual.calculate([
+            $0 + pow(Float($1[2] - individual.node.calculate([
                 "X0": $1[0],
                 "X1": $1[1]
             ])), power)
