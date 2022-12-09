@@ -9,14 +9,39 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>genetic-programming.xcscheme_^#shared#^_</key>
+		<key>gp4cg.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>gp4cgTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>BAA31C4D2943207600ADEF22</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BAA31C6229432D4C00ADEF22</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BAA31C6D294330AD00ADEF22</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BAA31C78294330E100ADEF22</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D02047EA291BECE800AEB158</key>
 		<dict>
 			<key>primary</key>
