@@ -13,7 +13,7 @@ struct Node {
     
     var op: Operator
     var params: [any Element] = []
-    var depth: Int = 0
+    var depth: Int = 1
     var maxDepth: Int = 1
     var nodeCount: Int = 1 // このノード以下のノードの数（1+1なら3，1+(1+1)なら5）
     
