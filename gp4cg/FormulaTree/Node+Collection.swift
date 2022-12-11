@@ -36,6 +36,7 @@ extension Node: Collection {
             fatalError("Index out of range")
         }
         set (node) {
+            precondition(0 < position && position <= endIndex)
             var tmpPosition = position
             for (i, param) in params.enumerated() {
                 switch tmpPosition {
