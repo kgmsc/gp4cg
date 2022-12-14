@@ -17,15 +17,16 @@ extension Node: Collection {
     
     subscript(position: Int) -> Element {
         get {
-            precondition(0 < position && position <= endIndex)
+            precondition(0 <= position && position < endIndex)
             var tmpPosition = position
             for param in params {
                 switch tmpPosition {
-                case 1..<param.nodeCount:
-                    guard let param = param as? Node else {
-                        fatalError()
+                case 0..<param.nodeCount:
+                    if let param = param as? Node {
+                        return param[tmpPosition]
+                    } else {
+                        return param
                     }
-                    return param[tmpPosition]
                 case param.nodeCount:
                     return param
                 default:
@@ -36,23 +37,25 @@ extension Node: Collection {
             fatalError("Index out of range")
         }
         set (node) {
-            precondition(0 < position && position <= endIndex)
+            precondition(0 <= position && position < endIndex)
             var tmpPosition = position
             for (i, param) in params.enumerated() {
                 switch tmpPosition {
-                case 1..<param.nodeCount:
-                    guard var param = param as? Node else {
-                        fatalError()
+                case 0..<param.nodeCount:
+                    let oldWeight = params[i].nodeCount
+                    var param = param
+                    if var param = param as? Node {
+                        param[tmpPosition] = node
+                        params[i] = param
+                    } else {
+                        params[i] = node
                     }
-                    let oldWeight = param.nodeCount
-                    param[tmpPosition] = node
-                    params[i] = param
-                    nodeCount = nodeCount - oldWeight + node.nodeCount
+                    nodeCount = nodeCount - oldWeight + params[i].nodeCount
                     return
                 case param.nodeCount:
-                    let oldWeight = params[i].nodeCount
+                    let oldWeight = param.nodeCount
                     params[i] = node
-                    nodeCount = nodeCount - oldWeight  + params[i].nodeCount
+                    nodeCount = nodeCount - oldWeight  + node.nodeCount
                     return
                 default:
                     tmpPosition -= param.nodeCount

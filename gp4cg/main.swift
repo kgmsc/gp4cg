@@ -263,7 +263,7 @@ regressor.operations = [
     PrintBest(sortFunction: { $0.evaluation(acc) == $1.evaluation(acc) ? $0.evaluation(mae) < $1.evaluation(mae) : $0.evaluation(acc) > $1.evaluation(acc) }),
     CustomOperation(operation: { population in
         for candidate in candidateManager.candidates {
-            print("\t \(candidate) \(candidate.fitness)")
+            print("\t \(candidate)")
         }
         return population
     }, description: "\tCandidates")

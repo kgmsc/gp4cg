@@ -12,7 +12,7 @@ struct PrintBest: GeneticOperation {
     var description: String = ""
     func exec(_ population: [Individual], generation: Int) -> [Individual] {
         if let min = population.min(by: sortFunction) {
-            print("\tBest: \(min) Fitness: \(min.fitness)")
+            print("\tBest: \(min)")
         }
         return population
     }
