@@ -43,7 +43,6 @@ extension Node: Collection {
                 switch tmpPosition {
                 case 0..<param.nodeCount:
                     let oldWeight = params[i].nodeCount
-                    var param = param
                     if var param = param as? Node {
                         param[tmpPosition] = node
                         params[i] = param
