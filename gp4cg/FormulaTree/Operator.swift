@@ -20,7 +20,7 @@ struct Operator {
             } else {
                 return $0[0] % $0[1]
             }
-        }, name: "mod", symbol: "+", arity: 2),
+        }, name: "mod", symbol: "%", arity: 2),
         "xor": Operator(function: {
             $0[0] ^ $0[1]
         }, name: "xor", symbol: "⊕", arity: 2),
