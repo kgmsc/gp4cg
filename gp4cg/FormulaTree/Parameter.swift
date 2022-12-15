@@ -11,6 +11,7 @@ protocol Parameter {
     func calculate(_ localParameters: [String: Int]) -> Int
     var nodeCount: Int { get }
     var staticValue: Int? { get }
+    func toFunctionStyleString() -> String
 }
 
 extension Int: Parameter {
@@ -23,6 +24,9 @@ extension Int: Parameter {
     var staticValue: Int? {
         self
     }
+    func toFunctionStyleString() -> String {
+        "\(self)"
+    }
 }
 
 extension String: Parameter {
@@ -34,6 +38,9 @@ extension String: Parameter {
     }
     var staticValue: Int? {
         nil
+    }
+    func toFunctionStyleString() -> String {
+        self
     }
 }
 

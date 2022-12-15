@@ -59,6 +59,8 @@ struct Node {
         let staticValues = params.compactMap { $0.staticValue }
         if staticValues.count == op.arity {
             staticValue = op.function(staticValues)
+        } else {
+            staticValue = nil
         }
     }
     
@@ -69,6 +71,24 @@ extension Node: CustomStringConvertible {
         if op.arity == 2 {
             if let p1 = params[0] as? Int, let p2 = params[1] as? Int {
                 return "\(op.function([p1, p2]))"
+            } else {
+                return "(\(params[0]) \(op.symbol) \(params[1]))"
+            }
+        } else {
+            if let p = params[0] as? Int {
+                return "\(op.function([p]))"
+            } else {
+                return "\(op.symbol)\(params[0])"
+            }
+        }
+    }
+    
+    func toFunctionStyleString() -> String {
+        if op.arity == 2 {
+            if let p1 = params[0] as? Int, let p2 = params[1] as? Int {
+                return "\(op.function([p1, p2]))"
+            } else if op.name == "xor" {
+                return "BitXor[\(params[0].toFunctionStyleString()),\(params[1].toFunctionStyleString())]"
             } else {
                 return "(\(params[0]) \(op.symbol) \(params[1]))"
             }

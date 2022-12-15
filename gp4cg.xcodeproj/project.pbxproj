@@ -26,6 +26,7 @@
 		BA23605A293C91C900E9FCD1 /* CandidateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA236059293C91C900E9FCD1 /* CandidateManager.swift */; };
 		BA261AFF293A369C00E49F72 /* SymbolicRegressorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA261AFE293A369C00E49F72 /* SymbolicRegressorConfiguration.swift */; };
 		BA261B01293A3B9300E49F72 /* GeneticOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA261B00293A3B9300E49F72 /* GeneticOperation.swift */; };
+		BA86A5092949EFFC0010D8C1 /* TeacherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86A5082949EFFC0010D8C1 /* TeacherData.swift */; };
 		BAA31C8A2943317E00ADEF22 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = BAA31C892943317E00ADEF22 /* Algorithms */; };
 		BAA31C8D2943320100ADEF22 /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA31C7B294330E100ADEF22 /* NodeTests.swift */; };
 		BAA31C8F2943400E00ADEF22 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BCBFC5291C070300755BD1 /* Node.swift */; };
@@ -89,6 +90,7 @@
 		BA236059293C91C900E9FCD1 /* CandidateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateManager.swift; sourceTree = "<group>"; };
 		BA261AFE293A369C00E49F72 /* SymbolicRegressorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicRegressorConfiguration.swift; sourceTree = "<group>"; };
 		BA261B00293A3B9300E49F72 /* GeneticOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneticOperation.swift; sourceTree = "<group>"; };
+		BA86A5082949EFFC0010D8C1 /* TeacherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherData.swift; sourceTree = "<group>"; };
 		BAA31C79294330E100ADEF22 /* gp4cgTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gp4cgTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAA31C7B294330E100ADEF22 /* NodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
 		BAC2EB5D293CEB5100A2C72D /* Crossover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crossover.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				BA232B6D2938841E00A5B910 /* SymbolicRegressor.swift */,
 				BA261AFE293A369C00E49F72 /* SymbolicRegressorConfiguration.swift */,
 				BA236059293C91C900E9FCD1 /* CandidateManager.swift */,
+				BA86A5082949EFFC0010D8C1 /* TeacherData.swift */,
 			);
 			path = gp4cg;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				D0BCBFCA291D24F600755BD1 /* Parameter.swift in Sources */,
 				BA236042293C733000E9FCD1 /* TournamentSelection.swift in Sources */,
 				BA236044293C733C00E9FCD1 /* PrintBest.swift in Sources */,
+				BA86A5092949EFFC0010D8C1 /* TeacherData.swift in Sources */,
 				BA23604C293C737900E9FCD1 /* Pick.swift in Sources */,
 				BAC2EB5E293CEB5100A2C72D /* Crossover.swift in Sources */,
 				BA261AFF293A369C00E49F72 /* SymbolicRegressorConfiguration.swift in Sources */,
