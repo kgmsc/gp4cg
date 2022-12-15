@@ -96,7 +96,7 @@ extension Node: CustomStringConvertible {
             if let p = params[0] as? Int {
                 return "\(op.function([p]))"
             } else {
-                return "\(op.symbol)\(params[0])"
+                return "\(op.symbol)\(params[0].toFunctionStyleString())"
             }
         }
     }
