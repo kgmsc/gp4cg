@@ -57,32 +57,30 @@ regressor.operations = [
                 }
             }
         }
-        // allfomulasListが空の時は動くとバグるのでifで制御
+        // 全て当てはまる最小のを探す　ここから.
         if (allformulasList.count != 0){
-            // 全て当てはまる最小のを探す
-            var bestcomboFormula:[Bool] = [false] // 仮。初期化する必要あるため適当にfalseにしておく
+            var bestcomboFormula:[Bool] = [false] // init
             for comboFormula in allformulasList.combinations(ofCount: 1...allformulasList.count){
-                var comboScoreFormulaList:[Bool] = [false]; // 仮。初期化する必要あるため適当にfalseにしておく
+//                print("最適な組み合わせを一つずつ調べています。")
+                var comboScoreFormulaList:[Bool] = [false];
                 if (comboFormula.count > 1){
-                    comboScoreFormulaList = comboFormula.reduce([]){result, array in return result + zip(result, array).map{$0 || $1 == true ? true : false}}
+                    comboScoreFormulaList = comboFormula.reduce([]){result, array in return result + zip(result, array).map{$0 || $1 == true ? true : false}}// 2つのカバーリストをまとめる
                 }else{
                     comboScoreFormulaList = comboFormula[0].map { $0 == true ? true : false}
                 }
                 if (checkCoverRate(array: comboScoreFormulaList) > checkCoverRate(array: bestcomboFormula)){
                     bestcomboFormula = comboScoreFormulaList
-                    print("一致率: \(checkCoverRate(array: comboScoreFormulaList))")
+                    print("ベスト組み合わせの一致率: \(checkCoverRate(array: comboScoreFormulaList))")
                     if (checkCoverRate(array: comboScoreFormulaList) == 1){
-                        print("一致しました一致しました一致しました一致しました一致しました一致しました一致しました一致しました一致しました")
+                        print("最適な組み合わせが見つかりました。")
                         break
                     }
                 }
             }
-            // もともと作成されてたものに合わせる
             isCoveredList = bestcomboFormula
         }
-        // カバーされてないの抽出
         let result = teacherData.enumerated().filter { !isCoveredList[$0.offset] }.map { $0.element }
-        print("RRRRRRRRRESTTTTTT \(result)")
+        print("Result \(result)")
         return population
     }, description: "Candidate Not Covered")
 ]
