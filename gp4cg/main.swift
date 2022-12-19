@@ -19,7 +19,11 @@ let acc = Accuracy(teacherData: teacherData)
 
 let candidateManager = CandidateManager(uniquenessIndicator: { $0.evaluation(acc) == $1.evaluation(acc) })
 
-
+func checkCoverRate(array: [Bool]) -> Double {
+    // array の中で true の個数をカウントする
+    let trueCount = array.filter { $0 == true }.count
+    return Double(trueCount) / Double(array.count) // 平均
+}
 
 let formatter = DateFormatter()
 formatter.dateFormat = "yyyy_M_d_H_m_s"
@@ -45,15 +49,40 @@ regressor.operations = [
     }, description: "\tCandidates"),
     CustomOperation(operation: { population in
         var isCoveredList = teacherData.map { _ in false }
-        for formula in candidateManager.candidates(teacherData: teacherData) {
-            for (i, ele) in formula.evaluation(teacherData).enumerated() {
+        var allformulasList = candidateManager.candidates(teacherData: teacherData).map { _ in isCoveredList }
+        for (formulaNumber, formula) in candidateManager.candidates(teacherData: teacherData).enumerated() { // 式リストから式を取り出す
+            for (i, ele) in formula.evaluation(teacherData).enumerated() { // 取り出された式をevaluateする
                 if ele {
-                    isCoveredList[i] = true
+                    allformulasList[formulaNumber][i] = true
                 }
             }
         }
+        // allfomulasListが空の時は動くとバグるのでifで制御
+        if (allformulasList.count != 0){
+            // 全て当てはまる最小のを探す
+            var bestcomboFormula:[Bool] = [false] // 仮。初期化する必要あるため適当にfalseにしておく
+            for comboFormula in allformulasList.combinations(ofCount: 1...allformulasList.count){
+                var comboScoreFormulaList:[Bool] = [false]; // 仮。初期化する必要あるため適当にfalseにしておく
+                if (comboFormula.count > 1){
+                    comboScoreFormulaList = comboFormula.reduce([]){result, array in return result + zip(result, array).map{$0 || $1 == true ? true : false}}
+                }else{
+                    comboScoreFormulaList = comboFormula[0].map { $0 == true ? true : false}
+                }
+                if (checkCoverRate(array: comboScoreFormulaList) > checkCoverRate(array: bestcomboFormula)){
+                    bestcomboFormula = comboScoreFormulaList
+                    print("一致率: \(checkCoverRate(array: comboScoreFormulaList))")
+                    if (checkCoverRate(array: comboScoreFormulaList) == 1){
+                        print("一致しました一致しました一致しました一致しました一致しました一致しました一致しました一致しました一致しました")
+                        break
+                    }
+                }
+            }
+            // もともと作成されてたものに合わせる
+            isCoveredList = bestcomboFormula
+        }
+        // カバーされてないの抽出
         let result = teacherData.enumerated().filter { !isCoveredList[$0.offset] }.map { $0.element }
-        print(result)
+        print("RRRRRRRRRESTTTTTT \(result)")
         return population
     }, description: "Candidate Not Covered")
 ]
@@ -71,4 +100,5 @@ try? df.writeCSV(to: URL(fileURLWithPath: "\(saveDir)/result.csv"), options: .in
 
 let cddata =  try! JSONEncoder().encode(candidateManager.candidates)
 try! cddata.write(to: URL(fileURLWithPath: "\(saveDir)/candidate.data"))
+
 
