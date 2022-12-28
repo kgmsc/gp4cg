@@ -10,12 +10,9 @@ import Foundation
 struct Accuracy: Fitness {
     let teacherData: [[Int]]
     
-    func exec(_ individual: Individual) -> Float {
-        Float(teacherData.filter {
-            $0[2] == individual.node.calculate([
-                "X0": $0[0],
-                "X1": $0[1]
-            ])
+    func exec(_ values: [Int]) -> Float {
+        Float(teacherData.enumerated().filter {
+            $0.element[2] == values[$0.offset]
         }.count) / Float(teacherData.count)
     }
 }

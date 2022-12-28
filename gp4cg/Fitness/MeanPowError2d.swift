@@ -11,12 +11,9 @@ struct MeanPowError2d: Fitness {
     let teacherData: [[Int]]
     var power: Float = 2.0
     
-    func exec(_ individual: Individual) -> Float {
-        let total = teacherData.reduce(Float.zero) {
-            $0 + pow(Float($1[2] - individual.node.calculate([
-                "X0": $1[0],
-                "X1": $1[1]
-            ])), power)
+    func exec(_ values: [Int]) -> Float {
+        let total = teacherData.enumerated().reduce(Float.zero) {
+            return $0 + pow(Float($1.element[2] - values[$1.offset]), power)
         }
         return total / Float(teacherData.count)
     }

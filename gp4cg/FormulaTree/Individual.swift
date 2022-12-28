@@ -12,6 +12,7 @@ class Individual: Codable {
     private(set) var node: Node
     private(set) var fitness: [String: Float] = [:]
     private var judgeResult: [Bool]?
+    private var execResult: [Int: Int] = [:]
     
     init(maxDepth: Int) {
         self.maxDepth = maxDepth
@@ -25,21 +26,33 @@ class Individual: Codable {
         self.fitness = fitness
     }
     
-    func evaluation(_ fitnessFunction: Fitness) -> Float {
+    private func array2param(_ array: [Int]) -> [String: Int] {
+        [
+            "X0": array[0],
+            "X1": array[1]
+        ]
+    }
+    
+    func evaluation(values teacherData: [[Int]]) -> [Int] {
+        print(self)
+        return teacherData.map {
+            let param = array2param($0)
+            let result = execResult[param.hashValue]  ?? node.calculate(param, previousResults: execResult)
+            execResult[param.hashValue] = result
+            return result
+        }
+    }
+    
+    func evaluation(fitness fitnessFunction: Fitness) -> Float {
         let key = String(describing: type(of: fitnessFunction))
-        let fitnessValue = fitness[key] ?? fitnessFunction.exec(self)
+        let fitnessValue = fitness[key] ?? fitnessFunction.exec(evaluation(values: fitnessFunction.teacherData))
         fitness[key] = fitnessValue
         return fitnessValue
     }
     
-    func evaluation(_ teacherData: [[Int]]) -> [Bool] {
-        if judgeResult == nil {
-            judgeResult = teacherData.map {
-                node.calculate([
-                    "X0": $0[0],
-                    "X1": $0[1]
-                ]) == $0[2]
-            }
+    func evaluation(isCorrect teacherData: [[Int]]) -> [Bool] {
+        judgeResult = judgeResult ?? evaluation(values: teacherData).enumerated().map {
+            $0.element == teacherData[$0.offset][2]
         }
         return judgeResult!
     }
