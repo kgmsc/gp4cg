@@ -26,16 +26,16 @@ struct Operator {
             $0[0] ^ $0[1]
         }, name: "xor", symbol: "⊕", arity: 2),
         "minus": Operator(function: {
-            -$0[0]
+            0 &- $0[0]
         }, name: "minus", symbol: "-", arity: 1),
         "add": Operator(function: {
-            $0[0] + $0[1]
+            $0[0] &+ $0[1]
         }, name: "add", symbol: "+", arity: 2),
         "sub": Operator(function: {
-            $0[0] - $0[1]
+            $0[0] &- $0[1]
         }, name: "sub", symbol: "-", arity: 2),
         "mul": Operator(function: {
-            $0[0] * $0[1]
+            $0[0] &* $0[1]
         }, name: "mul", symbol: "×", arity: 2),
         "div": Operator(function: {
             if $0[1] == 0 {

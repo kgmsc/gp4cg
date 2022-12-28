@@ -57,8 +57,9 @@ extension Recursion: Parameter {
             fatalError()
         }
         param[self.changeValue] = oldParam - self.delta
-        print(param)
-        print(previousResults[param.hashValue])
+//        print("親から引き継ぎ", localParameters)
+//        print("作成",param)
+//        print("出力予定", previousResults[param.hashValue] ?? 0)
         return previousResults.keys.contains(param.hashValue) ? previousResults[param.hashValue]! : 0
     }
     var nodeCount: Int {

@@ -34,8 +34,9 @@ class Individual: Codable {
     }
     
     func evaluation(values teacherData: [[Int]]) -> [Int] {
-        print(self)
+//        print(self)
         return teacherData.map {
+//            print("===================", $0)
             let param = array2param($0)
             let result = execResult[param.hashValue]  ?? node.calculate(param, previousResults: execResult)
             execResult[param.hashValue] = result

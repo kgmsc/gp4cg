@@ -12,7 +12,7 @@ struct MeanAbsoluteError2d: Fitness {
     
     func exec(_ values: [Int]) -> Float {
         let total = teacherData.enumerated().reduce(Int.zero) {
-            $0 + $1.element[2] - values[$1.offset]
+            $0 + $1.element[2] &- values[$1.offset]
         }
         return Float(total) / Float(teacherData.count)
     }
