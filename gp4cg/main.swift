@@ -19,7 +19,11 @@ let acc = Accuracy(teacherData: teacherData)
 
 let candidateManager = CandidateManager(uniquenessIndicator: { $0.evaluation(fitness: acc) == $1.evaluation(fitness: acc) })
 
-
+func checkCoverRate(array: [Bool]) -> Double {
+    // array の中で true の個数をカウントする
+    let trueCount = array.filter { $0 == true }.count
+    return Double(trueCount) / Double(array.count) // 平均
+}
 
 let formatter = DateFormatter()
 formatter.dateFormat = "yyyy_M_d_H_m_s"
@@ -45,15 +49,18 @@ regressor.operations = [
     }, description: "\tCandidates"),
     CustomOperation(operation: { population in
         var isCoveredList = teacherData.map { _ in false }
-        for formula in candidateManager.candidates(teacherData: teacherData) {
-            for (i, ele) in formula.evaluation(isCorrect: teacherData).enumerated() {
+        var allformulasList = candidateManager.candidates(teacherData: teacherData).map { _ in isCoveredList }
+        for (formulaNumber, formula) in candidateManager.candidates(teacherData: teacherData).enumerated() { // 式リストから式を取り出す
+            for (i, ele) in formula.evaluation(isCorrect: teacherData).enumerated() { // 取り出された式をevaluateする
                 if ele {
-                    isCoveredList[i] = true
+                    allformulasList[formulaNumber][i] = true
                 }
             }
         }
+        isCoveredList = candidateManager.findMinimamNecessary();
+        
         let result = teacherData.enumerated().filter { !isCoveredList[$0.offset] }.map { $0.element }
-        print(result)
+        print("Result \(result)")
         return population
     }, description: "Candidate Not Covered")
 ]
@@ -71,4 +78,5 @@ try? df.writeCSV(to: URL(fileURLWithPath: "\(saveDir)/result.csv"), options: .in
 
 let cddata =  try! JSONEncoder().encode(candidateManager.candidates)
 try! cddata.write(to: URL(fileURLWithPath: "\(saveDir)/candidate.data"))
+
 

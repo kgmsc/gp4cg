@@ -11,8 +11,8 @@ class Individual: Codable {
     let maxDepth: Int
     private(set) var node: Node
     private(set) var fitness: [String: Float] = [:]
-    private var judgeResult: [Bool]?
     private var execResult: [Int: Int] = [:]
+    var judgeResult: [Bool]?
     
     init(maxDepth: Int) {
         self.maxDepth = maxDepth
