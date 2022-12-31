@@ -19,7 +19,7 @@ struct RandomMutation: Mutation {
             if let branch = branch as? Node {
                 root[index] = Node(depth: branch.depth, maxDepth: $0.maxDepth)
             } else {
-                root[index] = FunctionGenerator.random(for: 1, variety: [.Number, .Variable]).first!
+                root[index] = FunctionGenerator.random(for: 1, variety: [.Number, .Variable, .Recursion]).first!
             }
             return Individual(maxDepth: $0.maxDepth, node: root)
         }

@@ -9,5 +9,5 @@ import Foundation
 
 protocol Fitness {
     var teacherData: [[Int]] { get }
-    func exec(_ individual: Individual) -> Float
+    func exec(_ values: [Int]) -> Float
 }

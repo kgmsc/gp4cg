@@ -25,7 +25,7 @@ class CandidateManager {
     
     func candidates(teacherData: [[Int]]) -> [Individual] {
         let orderedCandidate = Array(candidates)
-        let candidateMatches = candidates.map { $0.evaluation(teacherData) }
+        let candidateMatches = candidates.map { $0.evaluation(isCorrect: teacherData) }
         var list: [Individual] = []
         var listMatches: [[Bool]] = []
         for (i, elem) in candidateMatches.enumerated() {

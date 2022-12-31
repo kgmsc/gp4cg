@@ -28,6 +28,9 @@
 		BA23605A293C91C900E9FCD1 /* CandidateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA236059293C91C900E9FCD1 /* CandidateManager.swift */; };
 		BA261AFF293A369C00E49F72 /* SymbolicRegressorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA261AFE293A369C00E49F72 /* SymbolicRegressorConfiguration.swift */; };
 		BA261B01293A3B9300E49F72 /* GeneticOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA261B00293A3B9300E49F72 /* GeneticOperation.swift */; };
+		BA572742294EDC6A00BE4556 /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = BA572741294EDC6A00BE4556 /* Numerics */; };
+		BA572744294EDC6A00BE4556 /* RealModule in Frameworks */ = {isa = PBXBuildFile; productRef = BA572743294EDC6A00BE4556 /* RealModule */; };
+		BA572746294F02F500BE4556 /* Recursion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA572745294F02F500BE4556 /* Recursion.swift */; };
 		BA86A5092949EFFC0010D8C1 /* TeacherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86A5082949EFFC0010D8C1 /* TeacherData.swift */; };
 		BAA31C8A2943317E00ADEF22 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = BAA31C892943317E00ADEF22 /* Algorithms */; };
 		BAA31C8D2943320100ADEF22 /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA31C7B294330E100ADEF22 /* NodeTests.swift */; };
@@ -93,6 +96,7 @@
 		BA236059293C91C900E9FCD1 /* CandidateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateManager.swift; sourceTree = "<group>"; };
 		BA261AFE293A369C00E49F72 /* SymbolicRegressorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicRegressorConfiguration.swift; sourceTree = "<group>"; };
 		BA261B00293A3B9300E49F72 /* GeneticOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneticOperation.swift; sourceTree = "<group>"; };
+		BA572745294F02F500BE4556 /* Recursion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recursion.swift; sourceTree = "<group>"; };
 		BA86A5082949EFFC0010D8C1 /* TeacherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherData.swift; sourceTree = "<group>"; };
 		BAA31C79294330E100ADEF22 /* gp4cgTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gp4cgTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAA31C7B294330E100ADEF22 /* NodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
@@ -119,7 +123,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA572742294EDC6A00BE4556 /* Numerics in Frameworks */,
 				BA024CDA2940814100A38B27 /* Algorithms in Frameworks */,
+				BA572744294EDC6A00BE4556 /* RealModule in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +170,7 @@
 				D0BCBFC9291D24F600755BD1 /* Parameter.swift */,
 				BAF27485293B03000056C705 /* FunctionGenerator.swift */,
 				BA236057293C787200E9FCD1 /* Operator.swift */,
+				BA572745294F02F500BE4556 /* Recursion.swift */,
 				A5571887743EFB447242F5BA /* FormulaGruop.swift */,
 			);
 			path = FormulaTree;
@@ -257,6 +264,8 @@
 			name = gp4cg;
 			packageProductDependencies = (
 				BA024CD92940814100A38B27 /* Algorithms */,
+				BA572741294EDC6A00BE4556 /* Numerics */,
+				BA572743294EDC6A00BE4556 /* RealModule */,
 			);
 			productName = "genetic-programming";
 			productReference = D02047EB291BECE800AEB158 /* gp4cg */;
@@ -291,6 +300,7 @@
 			mainGroup = D02047E2291BECE800AEB158;
 			packageReferences = (
 				BA024CD82940814100A38B27 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				BA572740294EDC6A00BE4556 /* XCRemoteSwiftPackageReference "swift-numerics" */,
 			);
 			productRefGroup = D02047EC291BECE800AEB158 /* Products */;
 			projectDirPath = "";
@@ -358,6 +368,7 @@
 				BAF27486293B03000056C705 /* FunctionGenerator.swift in Sources */,
 				BA23605A293C91C900E9FCD1 /* CandidateManager.swift in Sources */,
 				BA236055293C741400E9FCD1 /* Accuracy.swift in Sources */,
+				BA572746294F02F500BE4556 /* Recursion.swift in Sources */,
 				D0BCBFC4291C06C100755BD1 /* Fitness.swift in Sources */,
 				D0BCBFC6291C070300755BD1 /* Node.swift in Sources */,
 				BA024CDC2940FF4B00A38B27 /* Node+Collection.swift in Sources */,
@@ -594,6 +605,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		BA572740294EDC6A00BE4556 /* XCRemoteSwiftPackageReference "swift-numerics" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-numerics";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -601,6 +620,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BA024CD82940814100A38B27 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
 			productName = Algorithms;
+		};
+		BA572741294EDC6A00BE4556 /* Numerics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA572740294EDC6A00BE4556 /* XCRemoteSwiftPackageReference "swift-numerics" */;
+			productName = Numerics;
+		};
+		BA572743294EDC6A00BE4556 /* RealModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA572740294EDC6A00BE4556 /* XCRemoteSwiftPackageReference "swift-numerics" */;
+			productName = RealModule;
 		};
 		BAA31C892943317E00ADEF22 /* Algorithms */ = {
 			isa = XCSwiftPackageProductDependency;
