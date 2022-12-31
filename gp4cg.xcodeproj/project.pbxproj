@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A55712ED8A71866FA78A152B /* FormulaGruop.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5571887743EFB447242F5BA /* FormulaGruop.swift */; };
+		A557171A3BA92CDB5E3AF928 /* FormulaGruop.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5571887743EFB447242F5BA /* FormulaGruop.swift */; };
 		BA024CDA2940814100A38B27 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = BA024CD92940814100A38B27 /* Algorithms */; };
 		BA024CDC2940FF4B00A38B27 /* Node+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA024CDB2940FF4B00A38B27 /* Node+Collection.swift */; };
 		BA024CDE2940FF7900A38B27 /* Node+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA024CDD2940FF7900A38B27 /* Node+Codable.swift */; };
@@ -72,6 +74,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A5571887743EFB447242F5BA /* FormulaGruop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaGruop.swift; sourceTree = "<group>"; };
 		BA024CDB2940FF4B00A38B27 /* Node+Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Node+Collection.swift"; sourceTree = "<group>"; };
 		BA024CDD2940FF7900A38B27 /* Node+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Node+Codable.swift"; sourceTree = "<group>"; };
 		BA232B6D2938841E00A5B910 /* SymbolicRegressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicRegressor.swift; sourceTree = "<group>"; };
@@ -161,6 +164,7 @@
 				D0BCBFC9291D24F600755BD1 /* Parameter.swift */,
 				BAF27485293B03000056C705 /* FunctionGenerator.swift */,
 				BA236057293C787200E9FCD1 /* Operator.swift */,
+				A5571887743EFB447242F5BA /* FormulaGruop.swift */,
 			);
 			path = FormulaTree;
 			sourceTree = "<group>";
@@ -325,6 +329,7 @@
 				BAA31C962943401100ADEF22 /* Fitness.swift in Sources */,
 				BAA31C8F2943400E00ADEF22 /* Node.swift in Sources */,
 				BAA31C922943400E00ADEF22 /* Individual.swift in Sources */,
+				A557171A3BA92CDB5E3AF928 /* FormulaGruop.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +363,7 @@
 				BA024CDC2940FF4B00A38B27 /* Node+Collection.swift in Sources */,
 				BA236040293C732200E9FCD1 /* Fork.swift in Sources */,
 				BA23604A293C736400E9FCD1 /* CustomOperation.swift in Sources */,
+				A55712ED8A71866FA78A152B /* FormulaGruop.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,7 +535,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WSAUVM3XKG;
+				DEVELOPMENT_TEAM = 844M648H99;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -540,7 +546,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WSAUVM3XKG;
+				DEVELOPMENT_TEAM = 844M648H99;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
