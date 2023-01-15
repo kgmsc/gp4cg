@@ -44,13 +44,13 @@ struct Operator {
                 return $0[0] / $0[1]
             }
         }, name: "div", symbol: "/", arity: 2),
-        "log": Operator(function: {
-            let result = logf(Float($0[0])) / logf(Float($0[1]))
-            guard !(result.isInfinite || result.isNaN) else {
-                return 0
-            }
-            return Int(result)
-        }, name: "log", symbol: "log", arity: 2),
+//        "log": Operator(function: {
+//            let result = logf(Float($0[0])) / logf(Float($0[1]))
+//            guard !(result.isInfinite || result.isNaN) else {
+//                return 0
+//            }
+//            return Int(result)
+//        }, name: "log", symbol: "log", arity: 2),
     ]
     
     static func random() -> Operator {

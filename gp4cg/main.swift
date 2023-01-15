@@ -8,7 +8,7 @@
 import Foundation
 import TabularData
 
-let teacherData = difficult1
+let teacherData = grundy1
 
 let config = SymbolicRegressorConfiguration(populationSize: 10000, generations: 20, depthRange: 3..<4)
 //let regressor = SymbolicRegressor(configuration: config, resumptionPath: "\(NSHomeDirectory())/Desktop/gp4cg/grundy4/log_2022_12_14_10_31_35/10.log")
@@ -27,15 +27,15 @@ func checkCoverRate(array: [Bool]) -> Double {
 
 let formatter = DateFormatter()
 formatter.dateFormat = "yyyy_M_d_H_m_s"
-let saveDir = "\(NSHomeDirectory())/Desktop/gp4cg/difficult1/log_\(formatter.string(from: Date()))"
+let saveDir = "\(NSHomeDirectory())/Desktop/gp4cg_random_only/grundy1/log_\(formatter.string(from: Date()))"
 
 regressor.operations = [
-    TournamentSelection(sortFunction: { $0.evaluation(fitness: mae) < $1.evaluation(fitness: mae) }, tournamentSize: 4),
-    Fork(operations: [
-        RandomMutation(teacherData: teacherData),
-        Nothing()
-    ]),
-    TournamentSelection(sortFunction: { $0.evaluation(fitness: acc) == $1.evaluation(fitness: acc) ? $0.evaluation(fitness: mae) < $1.evaluation(fitness: mae) : $0.evaluation(fitness: acc) > $1.evaluation(fitness: acc) }, tournamentSize: 2),
+//    TournamentSelection(sortFunction: { $0.evaluation(fitness: mae) < $1.evaluation(fitness: mae) }, tournamentSize: 4),
+//    Fork(operations: [
+//        RandomMutation(teacherData: teacherData),
+//        Nothing()
+//    ]),
+//    TournamentSelection(sortFunction: { $0.evaluation(fitness: acc) == $1.evaluation(fitness: acc) ? $0.evaluation(fitness: mae) < $1.evaluation(fitness: mae) : $0.evaluation(fitness: acc) > $1.evaluation(fitness: acc) }, tournamentSize: 2),
     Pick(candidateManager: candidateManager, filterFunction: { individual in
         individual.evaluation(fitness: acc) > 0.2
     }),
@@ -48,21 +48,24 @@ regressor.operations = [
         return population
     }, description: "\tCandidates"),
     CustomOperation(operation: { population in
-        var isCoveredList = teacherData.map { _ in false }
-        var allformulasList = candidateManager.candidates(teacherData: teacherData).map { _ in isCoveredList }
-        for (formulaNumber, formula) in candidateManager.candidates(teacherData: teacherData).enumerated() { // 式リストから式を取り出す
-            for (i, ele) in formula.evaluation(isCorrect: teacherData).enumerated() { // 取り出された式をevaluateする
-                if ele {
-                    allformulasList[formulaNumber][i] = true
-                }
-            }
-        }
-        isCoveredList = candidateManager.findMinimamNecessary();
-        
-        let result = teacherData.enumerated().filter { !isCoveredList[$0.offset] }.map { $0.element }
-        print("Result \(result)")
-        return population
-    }, description: "Candidate Not Covered")
+        return []
+    }, description: "中身を全てリセット")
+//    CustomOperation(operation: { population in
+//        var isCoveredList = teacherData.map { _ in false }
+//        var allformulasList = candidateManager.candidates(teacherData: teacherData).map { _ in isCoveredList }
+//        for (formulaNumber, formula) in candidateManager.candidates(teacherData: teacherData).enumerated() { // 式リストから式を取り出す
+//            for (i, ele) in formula.evaluation(isCorrect: teacherData).enumerated() { // 取り出された式をevaluateする
+//                if ele {
+//                    allformulasList[formulaNumber][i] = true
+//                }
+//            }
+//        }
+//        isCoveredList = candidateManager.findMinimamNecessary();
+//
+//        let result = teacherData.enumerated().filter { !isCoveredList[$0.offset] }.map { $0.element }
+//        print("Result \(result)")
+//        return population
+//    }, description: "Candidate Not Covered")
 ]
 
 regressor.fit()
