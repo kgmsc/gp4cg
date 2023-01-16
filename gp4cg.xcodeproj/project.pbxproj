@@ -108,6 +108,7 @@
 		D0BCBFC5291C070300755BD1 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		D0BCBFC7291C090500755BD1 /* Individual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Individual.swift; sourceTree = "<group>"; };
 		D0BCBFC9291D24F600755BD1 /* Parameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameter.swift; sourceTree = "<group>"; };
+		D0CB59B9297588AE0040605A /* Tutorial.tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = Tutorial.tutorial; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +195,7 @@
 		D02047E2291BECE800AEB158 = {
 			isa = PBXGroup;
 			children = (
+				D0CB59B9297588AE0040605A /* Tutorial.tutorial */,
 				D02047ED291BECE800AEB158 /* gp4cg */,
 				BAA31C7A294330E100ADEF22 /* gp4cgTests */,
 				D02047EC291BECE800AEB158 /* Products */,
@@ -213,6 +215,7 @@
 		D02047ED291BECE800AEB158 /* gp4cg */ = {
 			isa = PBXGroup;
 			children = (
+				D0CB59BA29758C570040605A /* .docc */,
 				BA236056293C77D900E9FCD1 /* FormulaTree */,
 				BA23604F293C73DD00E9FCD1 /* Fitness */,
 				BA23603C293C72FC00E9FCD1 /* GeneticOperation */,
@@ -223,6 +226,13 @@
 				BA86A5082949EFFC0010D8C1 /* TeacherData.swift */,
 			);
 			path = gp4cg;
+			sourceTree = "<group>";
+		};
+		D0CB59BA29758C570040605A /* .docc */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = .docc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
