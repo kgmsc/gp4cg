@@ -86,15 +86,15 @@ let config = SymbolicRegressorConfiguration(populationSize: 10000, // can change
 ```
 
 ## Using Function
-|  Function name   | Act     | Arity          |   Symbol |
-|------|:--------------|:-----------:|--------------:|
-| add | 与えられた2つの引数を足します。|2 | + |
-| sub | 与えられた2つの引数を引きます。 例えば4と2が与えられた場合は2が返ります | 2 | - |
-| mul | 与えられた2つの引数同士を掛け算します | 2 | × | 
-| div | 割り算をします。10と5が与えられた場合は2が返ります。2つ目の引数に0が入ると1が返ります | 2 | / |
-| mod| 割り算のあまりを求めます。2つの引数(arity)が与えられますが、2つ目の値に0が入ると0が返ります | ２  | % |
-| log | ログを返します。　20, 3が与えられた場合 Log20 / Log 3を行います。　もし結果がnullやinfinityが返ってきた場合は0が返ります。 | 2 | log |
-| XOR | 与えられた2数の排他的論理和を求めます。 | 2  |  ⊕ |
-| minus | 与えられた数字にマイナスを付与します。-4 => 4, 9 => -9     | 1  | - |
+| Function name | Action                                                                                                                        | Arity | Symbol |
+|---------------|:------------------------------------------------------------------------------------------------------------------------------|:-----:|-------:|
+| add           | Adds two given arguments together	                                                                                            |   2   |      + |
+| sub           | Subtracts the second argument from the first. For example, if 4 and 2 are given, it returns 2                                 |   2   |      - |
+| mul           | Multiplies the two given arguments together	                                                                                  |   2   |      × | 
+| div           | 	Divides the first argument by the second. If 10 and 5 are given, it returns 2. If the second argument is 0, it returns 1     |   2   |      / |
+| mod           | Returns the remainder of dividing the first argument by the second. If the second argument is 0, it returns 0.                |   ２   |      % |
+| log           | Returns the logarithm. If 20 and 3 are given, it will perform log20 / log 3. If the result is null or infinity, it returns 0. |   2   |    log |
+| XOR           | Returns the exclusive or of the two given arguments.                                                                          |   2   |      ⊕ |
+| minus         | Appends a minus to the given number. -4 => 4, 9 => -9                                                                         |   1   |      - |
 
-## Using Function
+### Let's try it!
