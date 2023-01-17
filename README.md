@@ -30,7 +30,6 @@ open gp4cg.xcodeproj
 
 3. Sign in to Xcode.
 
-![image](https://user-images.githubusercontent.com/38392315/137591000-0b5b0b1f-3b0a-4b0e-8b0d-1b0c1b2b0b1a.png)
 
 4. Set the sequence you want to analyze in the following directory:
 
@@ -85,3 +84,17 @@ let config = SymbolicRegressorConfiguration(populationSize: 10000, // can change
         generations: 20, // can change generations
         depthRange: 3..<4) // can change depth
 ```
+
+## Using Function
+|  Function name   | Act     | Arity          |   Symbol |
+|------|:--------------|:-----------:|--------------:|
+| add | 与えられた2つの引数を足します。|2 | + |
+| sub | 与えられた2つの引数を引きます。 例えば4と2が与えられた場合は2が返ります | 2 | - |
+| mul | 与えられた2つの引数同士を掛け算します | 2 | × | 
+| div | 割り算をします。10と5が与えられた場合は2が返ります。2つ目の引数に0が入ると1が返ります | 2 | / |
+| mod| 割り算のあまりを求めます。2つの引数(arity)が与えられますが、2つ目の値に0が入ると0が返ります | ２  | % |
+| log | ログを返します。　20, 3が与えられた場合 Log20 / Log 3を行います。　もし結果がnullやinfinityが返ってきた場合は0が返ります。 | 2 | log |
+| XOR | 与えられた2数の排他的論理和を求めます。 | 2  |  ⊕ |
+| minus | 与えられた数字にマイナスを付与します。-4 => 4, 9 => -9     | 1  | - |
+
+## Using Function
