@@ -7,6 +7,9 @@
 
 import Foundation
 
+/// This is a GeneticOperation that saves individuals to a file at the end of each generation.
+/// The data is saved in a JSON format.
+/// The filename is the generation number, and the file is placed in the directory specified by saveDirectory.
 struct SaveProgress: GeneticOperation {
     var description: String = "\tSave"
     let saveDirectory: String

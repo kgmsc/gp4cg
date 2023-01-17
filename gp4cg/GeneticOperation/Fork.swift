@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// A fork executes all of its operations in parallel, and returns the result of joining
+/// the results of each operation.
 struct Fork: GeneticOperation {
     let operations: [GeneticOperation]
     var description: String = "\tFork"

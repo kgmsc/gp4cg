@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// This will return a new array of individuals that have been filtered by the filterFunction. The filterFunction will take an individual as a parameter and return a boolean value. This boolean value will determine whether or not the individual is added to the new array. 
+/// The candidateManager will add all individuals that pass the filterFunction to the candidateManager's candidate pool.
 struct Pick: GeneticOperation {
     let candidateManager: CandidateManager
     let filterFunction: (Individual) -> Bool

@@ -6,18 +6,26 @@
 //
 
 import Foundation
-
+/// This is a class that is used to generate the symbolic regression model.
 class SymbolicRegressor {
-    
+
+    /// The configuration object is used to set the parameters of the model.
     let configuration: SymbolicRegressorConfiguration
+
+    /// The population is a list of individuals, each of which is a tree.
     var population: [Individual] = []
+
+    /// The operations are the genetic operations applied to the individuals in the
+    /// population.
     var operations: [GeneticOperation] = []
     
     init(configuration: SymbolicRegressorConfiguration) {
+        /// This is the constructor that does not resume from a previous state.
         self.configuration = configuration
     }
     
     init(configuration: SymbolicRegressorConfiguration, resumptionPath: String) {
+        /// This is the constructor that resumes from a previous state.
         self.configuration = configuration
         let url = URL(fileURLWithPath: resumptionPath)
         var importedPopulation: [Individual]
@@ -30,7 +38,9 @@ class SymbolicRegressor {
     }
     
     func fit() {
+        /// This is the main function that performs the symbolic regression.
         for gen in 1...configuration.generations {
+            /// The following block of code is executed for each generation.
             print("########## Generation \(gen)/\(configuration.generations)")
             population += Individual.generate(for: configuration.populationSize - population.count, depthRange: configuration.depthRange)
             for operation in operations {

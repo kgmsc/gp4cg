@@ -8,6 +8,7 @@
 import Foundation
 import Algorithms
 
+/// generate an expression
 struct FunctionGenerator {
     private static let params: [ParameterViriety: [Parameter]] = [
         .Node: Operator.operators.values.map { Node(op: $0) },
