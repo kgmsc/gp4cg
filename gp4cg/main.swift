@@ -9,7 +9,6 @@ import Foundation
 import TabularData
 
 let teacherData = difficult1
-
 let config = SymbolicRegressorConfiguration(populationSize: 10000, generations: 20, depthRange: 3..<4)
 //let regressor = SymbolicRegressor(configuration: config, resumptionPath: "\(NSHomeDirectory())/Desktop/gp4cg/grundy4/log_2022_12_14_10_31_35/10.log")
 let regressor = SymbolicRegressor(configuration: config)

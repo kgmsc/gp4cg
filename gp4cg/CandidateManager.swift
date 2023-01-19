@@ -7,7 +7,9 @@
 
 import Foundation
 
+/// Find a candidate expression
 class CandidateManager {
+    /// formula list
     private(set) var candidates: Set<Individual> = []
     var uniquenessIndicator: (Individual, Individual) -> Bool
     
@@ -15,6 +17,9 @@ class CandidateManager {
         self.uniquenessIndicator = uniquenessIndicator
     }
     
+    /// Adds a new individual to the population.
+    /// Checks for uniqueness using the uniquenessIndicator function.
+    /// If the individual is already in the population, it is not added.
     func add(_ individuals: [Individual]) {
         for individual in individuals {
             if !candidates.contains(where: { uniquenessIndicator($0, individual) }) {
@@ -46,23 +51,20 @@ class CandidateManager {
 
 
     func findMinimamNecessary() -> [Bool] {
-        // 全て当てはまる最小のを探す
         var bestFormulaGroup: FormulaGrop = FormulaGrop(formulaList: []);
         if (candidates.count != 0){
             for comboFormulaGroup in candidates.combinations(ofCount: 1...candidates.count){
-//                print("最適な組み合わせを一つずつ調べています。現在調べている組み合わせは \(comboFormulaGroup.map { $0.node.toFunctionStyleString() })")
                 let comboFormulaJudgeResult: [[Bool]] = comboFormulaGroup.map { $0.judgeResult! };
                 let nomalFormulaGroup: FormulaGrop = FormulaGrop(formulaList: comboFormulaGroup);
                 if (comboFormulaJudgeResult.count > 1){
-                    nomalFormulaGroup.evaluateAccuracy(judgeResult: conbineLists(array: comboFormulaJudgeResult)) // 2つのカバーリストをまとめる
+                    nomalFormulaGroup.evaluateAccuracy(judgeResult: conbineLists(array: comboFormulaJudgeResult))
                 }else{
-                    nomalFormulaGroup.evaluateAccuracy(judgeResult: comboFormulaJudgeResult[0].map { $0 == true ? true : false}) // 1つの組み合わせの場合
+                    nomalFormulaGroup.evaluateAccuracy(judgeResult: comboFormulaJudgeResult[0].map { $0 == true ? true : false})
                 }
-//                print("こちらの組み合わせのカバー率は\(nomalFormulaGroup.accuracy)でした！")
                 if (bestFormulaGroup.isEmpty() || nomalFormulaGroup.accuracy > bestFormulaGroup.accuracy){
                     bestFormulaGroup = nomalFormulaGroup;
                     if (bestFormulaGroup.accuracy == 1){
-                        print("最適な組み合わせが見つかりました。") // Todo: 見つかると実行をやめるようにする
+                        print("最適な組み合わせが見つかりました。")
                         break
                     }
                 }

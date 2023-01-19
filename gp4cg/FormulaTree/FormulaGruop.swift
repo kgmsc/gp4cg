@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// set of expressions
 class FormulaGrop: Codable{
     var formulaList: [Individual]
     var judgeResult: [Bool]
@@ -23,7 +24,7 @@ class FormulaGrop: Codable{
     }
 
     func evaluateAccuracy(judgeResult: [Bool]){
-        self.judgeResult = judgeResult // addの要素もあるのでfuncの名前おかしいかも
+        self.judgeResult = judgeResult
         self.accuracy = checkCoverRate(array: judgeResult);
     }
 

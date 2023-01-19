@@ -6,7 +6,8 @@
 //
 
 import Foundation
-
+/// This code is a genetic operation that prints the best individual in a population.
+/// The best individual is determined by the sort function passed in to the constructor.
 struct PrintBest: GeneticOperation {
     let sortFunction: (Individual, Individual) -> Bool
     var description: String = ""

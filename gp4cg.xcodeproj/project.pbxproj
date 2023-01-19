@@ -213,6 +213,7 @@
 		D02047ED291BECE800AEB158 /* gp4cg */ = {
 			isa = PBXGroup;
 			children = (
+				D0CB59BA29758C570040605A /* .docc */,
 				BA236056293C77D900E9FCD1 /* FormulaTree */,
 				BA23604F293C73DD00E9FCD1 /* Fitness */,
 				BA23603C293C72FC00E9FCD1 /* GeneticOperation */,
@@ -223,6 +224,13 @@
 				BA86A5082949EFFC0010D8C1 /* TeacherData.swift */,
 			);
 			path = gp4cg;
+			sourceTree = "<group>";
+		};
+		D0CB59BA29758C570040605A /* .docc */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = .docc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

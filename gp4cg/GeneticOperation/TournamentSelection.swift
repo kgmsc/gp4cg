@@ -8,7 +8,14 @@
 import Foundation
 import Algorithms
 
+/// This code defines the "TournamentSelection" class, which represents one of the selection algorithms, tournament selection. 
+/// Tournament selection is a method of selecting the best individual from a fixed number of randomly selected individuals.
+///This class has a sort function "sortFunction", a tournament size "tournamentSize", and "Tournament Selection" as "description".
+///The "exec" method takes a given population "population" of individuals and a generation number "generation", executes the tournament selection, and returns a population of selected individuals. First, it shuffles the population and divides it into tournaments of different sizes. 
+///Next, it selects the best individuals in those tournaments, after comparing them with the sortFunction function, and adds them to the population of selected individuals.
+///Finally, a DispatchQueue is used to run many tournaments simultaneously.
 struct TournamentSelection: Selection {
+    /// sort function to determine the best individual in a tournament
     let sortFunction: (Individual, Individual) -> Bool
     let tournamentSize: Int
     var description: String = "\tTournament Selection"

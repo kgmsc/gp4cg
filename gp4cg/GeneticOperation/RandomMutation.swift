@@ -7,6 +7,9 @@
 
 import Foundation
 
+/// This code generates an array of new individuals by randomly replacing a node with another node.
+/// The node is chosen by picking a random index.
+/// The new node can be a number or a variable, or a new node with a random function.
 struct RandomMutation: Mutation {
     let teacherData: [[Int]]
     var description: String = "\tRandom Mutation"
