@@ -49,28 +49,47 @@ class CandidateManager {
         return result
     }
 
-
     func findMinimamNecessary() -> [Bool] {
-        var bestFormulaGroup: FormulaGrop = FormulaGrop(formulaList: []);
-        if (candidates.count != 0){
-            for comboFormulaGroup in candidates.combinations(ofCount: 1...candidates.count){
-                let comboFormulaJudgeResult: [[Bool]] = comboFormulaGroup.map { $0.judgeResult! };
-                let nomalFormulaGroup: FormulaGrop = FormulaGrop(formulaList: comboFormulaGroup);
-                if (comboFormulaJudgeResult.count > 1){
-                    nomalFormulaGroup.evaluateAccuracy(judgeResult: conbineLists(array: comboFormulaJudgeResult))
-                }else{
-                    nomalFormulaGroup.evaluateAccuracy(judgeResult: comboFormulaJudgeResult[0].map { $0 == true ? true : false})
-                }
-                if (bestFormulaGroup.isEmpty() || nomalFormulaGroup.accuracy > bestFormulaGroup.accuracy){
-                    bestFormulaGroup = nomalFormulaGroup;
-                    if (bestFormulaGroup.accuracy == 1){
-                        print("最適な組み合わせが見つかりました。")
-                        break
-                    }
-                }
+        let url = URL(string: "http://localhost:5102/find_minimum_necessary")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let json: [String: Any] = ["candidates": candidates.map { ["judge_result" : $0.judgeResult, "formulas": $0.node.toFunctionStyleString() ]}]
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+
+        request.httpBody = jsonData
+
+        let semaphore = DispatchSemaphore(value: 0)
+
+        var result: [Bool] = []
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
             }
-            print("現時点での最適な組み合わせは\(bestFormulaGroup.formulaList.map {$0.node.toFunctionStyleString()}) で一致率は \(bestFormulaGroup.accuracy)")
+
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response = \(String(describing: response))")
+            }
+
+            do {
+                if let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as? [Bool] {
+                    result = jsonResult
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+
+            semaphore.signal()
         }
-        return bestFormulaGroup.judgeResult
+
+        task.resume()
+
+//        _ = semaphore.wait(timeout: 10)
+
+        return result
     }
 }
