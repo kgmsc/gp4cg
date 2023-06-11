@@ -14,7 +14,7 @@ struct FunctionGenerator {
         .Node: Operator.operators.values.map { Node(op: $0) },
         .Number: Array(1...3),
         .Variable: (0...1).map { "X" + String($0) },
-        .Recursion: (1...3).map { Recursion(changeValue: "X1", delta: $0)} //+ (1...3).map { Recursion(changeValue: "X0", delta: $0) }
+        //.Recursion: (1...3).map { Recursion(changeValue: "X1", delta: $0)} //+ (1...3).map { Recursion(changeValue: "X0", delta: $0) }
     ]
     
     static func random(for count: Int, variety: [ParameterViriety]) -> [Parameter] {
@@ -25,6 +25,6 @@ struct FunctionGenerator {
         case Variable
         case Number
         case Node
-        case Recursion
+        //case Recursion
     }
 }

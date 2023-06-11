@@ -51,6 +51,10 @@ struct Operator {
             }
             return Int(result)
         }, name: "log", symbol: "log", arity: 2),
+        "2exp": Operator(function: {
+            let result = $0[0] < 0 || $0[0] > 20 ? 1 : Double.pow(2, $0[0])
+            return Int(result)
+        }, name: "2exp", symbol: "2exp", arity: 1),
     ]
     
     static func random() -> Operator {

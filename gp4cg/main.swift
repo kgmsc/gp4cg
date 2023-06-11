@@ -8,8 +8,8 @@
 import Foundation
 import TabularData
 
-let teacherData = difficult1
-let config = SymbolicRegressorConfiguration(populationSize: 10000, generations: 20, depthRange: 3..<4)
+let teacherData = manabe0526
+let config = SymbolicRegressorConfiguration(populationSize: 10000, generations: 100, depthRange: 3..<4)
 //let regressor = SymbolicRegressor(configuration: config, resumptionPath: "\(NSHomeDirectory())/Desktop/gp4cg/grundy4/log_2022_12_14_10_31_35/10.log")
 let regressor = SymbolicRegressor(configuration: config)
 
@@ -26,7 +26,7 @@ func checkCoverRate(array: [Bool]) -> Double {
 
 let formatter = DateFormatter()
 formatter.dateFormat = "yyyy_M_d_H_m_s"
-let saveDir = "\(NSHomeDirectory())/Desktop/gp4cg/difficult1/log_\(formatter.string(from: Date()))"
+let saveDir = "\(NSHomeDirectory())/Desktop/gp4cg/portgul/log_\(formatter.string(from: Date()))"
 
 regressor.operations = [
     TournamentSelection(sortFunction: { $0.evaluation(fitness: mae) < $1.evaluation(fitness: mae) }, tournamentSize: 4),

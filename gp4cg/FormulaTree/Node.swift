@@ -35,14 +35,14 @@ struct Node {
     mutating func setRandomParams(isPriority: Bool = false) {
         precondition(depth <= maxDepth)
         if depth == maxDepth {
-            params = FunctionGenerator.random(for: op.arity, variety: [.Number, .Variable, .Recursion])
+            params = FunctionGenerator.random(for: op.arity, variety: [.Number, .Variable])
         } else if isPriority {
             params = [
                 FunctionGenerator.random(for: 1, variety: [.Node]),
-                FunctionGenerator.random(for: op.arity - 1, variety: [.Node, .Number, .Variable, .Recursion])
+                FunctionGenerator.random(for: op.arity - 1, variety: [.Node, .Number, .Variable])
             ].flatMap { $0 }
         } else {
-            params = FunctionGenerator.random(for: op.arity, variety: [.Node, .Number, .Variable, .Recursion])
+            params = FunctionGenerator.random(for: op.arity, variety: [.Node, .Number, .Variable])
         }
         self.nodeCount = 1; //自分自身を含むので1
         for (i, param) in params.enumerated() {
